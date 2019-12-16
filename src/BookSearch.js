@@ -1,8 +1,8 @@
-import React from "react";
-import Axios from "axios";
-import { queryBooks } from "./api/helpers";
-import SearchForm from "./SearchForm";
-import SearchList from "./SearchList";
+import React from 'react';
+import Axios from 'axios';
+import { queryBooks } from './api/helpers';
+import SearchForm from './SearchForm';
+import SearchList from './SearchList';
 
 function BookSearch() {
   const [list, setList] = React.useState([]);
@@ -15,6 +15,7 @@ function BookSearch() {
 
   return (
     <>
+      <h2>Search your books</h2>
       <SearchForm searchBooks={searchBooks} />
       <SearchList list={list} />
     </>

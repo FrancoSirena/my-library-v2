@@ -1,21 +1,22 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import { coverURL } from "./api/helpers";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { coverURL } from './api/helpers';
 
 function SearchList({ list = [] }) {
   const addBook = key => {
-    const localBooks = JSON.parse(localStorage.getItem("myBooks")) || [];
+    const localBooks = JSON.parse(localStorage.getItem('myBooks')) || [];
     localBooks.push(key);
-    localStorage.setItem("myBooks", JSON.stringify(localBooks));
+    localStorage.setItem('myBooks', JSON.stringify(localBooks));
   };
   return (
     <div className="book-list">
       {list.map(item => (
         <article className="book-list--item" key={item.key}>
           <button
+            aria-label="Add to bookshelf"
             className="book-list--item__add"
-            onClick={() => addBook(item.key.replace("/works/", ""))}
+            onClick={() => addBook(item.key.replace('/works/', ''))}
           >
             <FontAwesomeIcon icon={faPlusCircle} size="2x" />
           </button>
@@ -30,7 +31,7 @@ function SearchList({ list = [] }) {
             </ul>
           </div>
           <div className="book-list--item__img">
-            <img src={coverURL(item.cover_i)} />
+            {item.cover_i && <img src={coverURL(item.cover_i)} />}
           </div>
         </article>
       ))}

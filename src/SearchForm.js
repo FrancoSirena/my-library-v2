@@ -1,6 +1,6 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function SearchForm({ searchBooks }) {
   const search = React.useRef();
@@ -13,10 +13,10 @@ function SearchForm({ searchBooks }) {
       }}
     >
       <label htmlFor="search">
-        Search
+        Search by
         <input type="text" placeholder="Search" ref={search} id="search" />
       </label>
-      <button type="submit">
+      <button type="submit" aria-label="Search books">
         <FontAwesomeIcon icon={faSearch} /> Search
       </button>
     </form>

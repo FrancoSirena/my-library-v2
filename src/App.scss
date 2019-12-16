@@ -1,8 +1,8 @@
-$color0: #000000;
-$color1: #14213d;
-$color2: #fca311;
-$color3: #e5e5e5;
-$color4: #ffffff;
+$color0: #310a31;
+$color1: #847996;
+$color2: #88b7b5;
+$color3: #a7cab1;
+$color4: #f4ecd6;
 
 .main {
   height: 100%;
@@ -10,9 +10,15 @@ $color4: #ffffff;
 }
 
 body {
-  font-family: "Oswald", sans-serif;
+  background-color: $color4;
+  font-family: 'Oswald', sans-serif;
+  color: $color0;
   h1 {
     font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;
+    margin: 0.5em;
   }
   * {
     box-sizing: border-box;
@@ -26,7 +32,7 @@ body {
 
 .book-list--item {
   padding: 16px;
-  color: $color1;
+  color: $color0;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -51,10 +57,10 @@ body {
     font-size: 14px;
   }
   &:nth-child(even) {
-    background-color: $color3;
+    background-color: $color2;
   }
   &:nth-child(odd) {
-    background-color: $color4;
+    background-color: $color3;
   }
   .book-list--item__details {
     padding-left: 24px;
@@ -83,9 +89,10 @@ body {
 }
 
 .book-form {
-  padding: 24px;
+  padding: 8px 24px 24px;
+  border: 1px solid $color1;
 
-  input[type="text"] {
+  input[type='text'] {
     padding: 4px;
     font-size: 14px;
     width: 50%;

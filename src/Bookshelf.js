@@ -1,20 +1,20 @@
-import React from "react";
-import Axios from "axios";
-import { booksURL, coverURL } from "./api/helpers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import Axios from 'axios';
+import { booksURL, coverURL } from './api/helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 function reducer(state, action) {
   switch (action.type) {
-    case "loading":
+    case 'loading':
       return {
         loading: true,
-        data: []
+        data: [],
       };
-    case "success":
+    case 'success':
       return {
         data: action.payload,
-        loading: false
+        loading: false,
       };
     default:
       return state;
@@ -24,24 +24,28 @@ function reducer(state, action) {
 function Bookshelf() {
   const [{ data, loading }, dispatch] = React.useReducer(reducer, {
     data: [],
-    loading: true
+    loading: true,
   });
 
   React.useEffect(() => {
-    const myBooks = JSON.parse(localStorage.getItem("myBooks")) || [];
-    if (myBooks.length > 0) {
-      Axios.all(myBooks.map(book => Axios.get(booksURL(book)))).then(res => {
-        dispatch({
-          type: "success",
-          payload: res.map(({ data }) => data)
+    new Promise(resolve => {
+      const myBooks = JSON.parse(localStorage.getItem('myBooks')) || [];
+      resolve(myBooks);
+    }).then(myBooks => {
+      if (myBooks.length > 0) {
+        Axios.all(myBooks.map(book => Axios.get(booksURL(book)))).then(res => {
+          dispatch({
+            type: 'success',
+            payload: res.map(({ data }) => data),
+          });
         });
-      });
-    } else {
-      dispatch({
-        type: "success",
-        payload: []
-      });
-    }
+      } else {
+        dispatch({
+          type: 'success',
+          payload: [],
+        });
+      }
+    });
   }, []);
 
   if (loading) {
@@ -57,7 +61,7 @@ function Bookshelf() {
       {data.map(({ key, title, covers }) => (
         <div key={key}>
           <h1>{title}</h1>
-          {covers && <img width={200} src={coverURL(covers[0], "L")} />}
+          {covers && <img width={200} src={coverURL(covers[0], 'L')} />}
           {!covers && <FontAwesomeIcon icon={faImage} size="4x" />}
         </div>
       ))}
